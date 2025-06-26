@@ -2,6 +2,15 @@ import pytest
 import shutil
 import os
 
+def pytest_addoption(parser): #新增cmd指令，可切換環境
+    parser.addoption(
+        "--env", action="store", default="uat", help="環境: uat 或 prod"
+    )
+
+@pytest.fixture(scope="session")
+def env(request):
+    return request.config.getoption("--env")
+
 # 再生成allure報告前，先刪除舊的json報告
 @pytest.hookimpl(tryfirst=True)
 def pytest_sessionstart(session):
