@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+config/config.toml
+allure-report/
+.pytest_cache/
