@@ -1,9 +1,191 @@
 [
     {
-        "desc": "訂閱BTCUSD-PERP 10檔",
+        "desc": "訂單BTCUSD-PERP 10筆",
         "instrument_name": "BTCUSD-PERP",
         "depth": 10,
         "expected_code": 0,
         "expect_data": true
+    },
+    {
+        "desc": "訂單BTCUSD-PERP 50筆",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 50,
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "同時發送訂單BTC/ETH/LTC(看規格沒有標註上限多少，故先以3個為主)",
+        "instrument_name": "BTCUSD-PERP",  
+        "depth": 10,
+        "expected_code": 0,
+        "expect_data": true,
+        "extra_params": {
+            "channels": [
+                "book.BTCUSD-PERP.10",
+                "book.ETHUSD-PERP.10",
+                "book.LTCUSD-PERP.10"
+            ]
+        }
+    },
+    {
+        "desc": "幣種不存在",
+        "instrument_name": "!@#$123-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Unknown symbol"
+    },
+    {
+        "desc": "商品名稱為空",
+        "instrument_name": "",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Unknown symbol"
+    
+    },
+    {
+        "desc": "channels 為空",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "extra_params": {
+            "channels": []
+        },
+        "expected_message": "Channels param empty"
+    },
+    {
+        "desc": "訂單ETHUSD-PERP 10筆",
+        "instrument_name": "ETHUSD-PERP",
+        "depth": 10,
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "訂單BTCUSD-PERP depth不符規格(10、50)",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 20,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid depth"
+    },
+    {
+        "desc": "訂單BTCUSD-PERP depth極限值",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": -999999999999,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid depth"
+    },
+    {
+        "desc": "訂單BTCUSD-PERP depth為0",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 0,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid depth"
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT_AND_UPDATE 模式 10ms",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 0,
+        "expect_data": true,
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT_AND_UPDATE",
+            "book_update_frequency": 10
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT_AND_UPDATE 模式 100ms",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 0,
+        "expect_data": true,
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT_AND_UPDATE",
+            "book_update_frequency": 100
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT_AND_UPDATE 錯誤參數頻率 ",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid book_update_frequency",
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT_AND_UPDATE",
+            "book_update_frequency": 123
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT_AND_UPDATE 參數頻率為0 ",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid book_update_frequency",
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT_AND_UPDATE",
+            "book_update_frequency": 0
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT_AND_UPDATE 參數頻率極限值 ",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid book_update_frequency",
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT_AND_UPDATE",
+            "book_update_frequency": 999999999999
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT 500ms",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 0,
+        "expect_data": true,
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT",
+            "book_update_frequency": 500
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT 錯誤參數頻率",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT",
+            "book_update_frequency": 50
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT 參數頻率為0",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT",
+            "book_update_frequency": 0
+        }
+    },
+    {
+        "desc": "訂單BTCUSD-PERP SNAPSHOT 參數頻率為極限值",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "extra_params": {
+            "book_subscription_type": "SNAPSHOT",
+            "book_update_frequency": 999999999999
+        }
     }
 ]

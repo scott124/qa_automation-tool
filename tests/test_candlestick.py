@@ -10,7 +10,7 @@ from utils.timeframe import TIMEFRAME_TO_INTERVAL
 with open("data/candlestick_testdata.json", encoding="utf-8") as f:
     cases = json.load(f)
 
-@allure.feature("Public API - Candlestick(測試用API)")
+@allure.feature("API - Candlestick")
 @pytest.mark.api
 @pytest.mark.parametrize("case", cases, ids=[c["desc"] for c in cases])
 def test_get_candlestick(case, env):
@@ -31,7 +31,7 @@ def test_get_candlestick(case, env):
         assert resp_json["method"] == "public/get-candlestick"
     
     with allure.step("Schema 驗證"):
-        validate(instance=resp_json, schema=candlestick_schema)  
+        validate(instance=resp_json, schema=candlestick_schema)   
         
     if case.get("expect_data", False) and resp_json["code"] == 0:
         with allure.step("驗證數據陣列&內容"):
