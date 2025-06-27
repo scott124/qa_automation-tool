@@ -51,3 +51,18 @@ def test_get_candlestick(case, env):
                     assert v >= 0, f"[{i}] 交易量<0: {v}" #驗證交易量>=0
                 except Exception as e:
                     assert False, f"[{i}] 數值轉換/邏輯異常: {e}"
+            # 驗證時間戳間隔
+            if len(data) > 1:
+                tf = case.get("timeframe", "M5")
+                interval = TIMEFRAME_TO_INTERVAL.get(tf)
+                if interval:  # 非月K線
+                    for j in range(1, len(data)):
+                        diff = data[j]["t"] - data[j-1]["t"]
+                        assert diff == interval, f"K線時間間隔不正確，第{j-1}~{j}根:{diff}，預期:{interval}"
+                elif tf == "1M":
+                    for j in range(1, len(data)):
+                        assert data[j]["t"] > data[j-1]["t"], f"月K線時間戳未遞增: {data[j-1]['t']} → {data[j]['t']}"
+    else:
+        with allure.step("異常或無數據情境"):
+            data = resp_json.get("result", {}).get("data", [])
+            assert resp_json["code"] != 0 or not data, f"異常場景 data: {data}"
