@@ -1,5 +1,72 @@
 [
     {
+        "desc": "幣種不存在",
+        "instrument_name": "!@#$123-PERP",
+        "timeframe": "1m",
+        "expected_code": 40004,
+        "expect_data": false,
+        "expected_message": "Invalid instrument_name"
+    },
+    {
+        "desc": "交易對名稱為空",
+        "instrument_name": "",
+        "timeframe": "",
+        "expected_code": 40004,
+        "expect_data": false,
+        "expected_message": "Invalid instrument_name"
+    },
+    {
+        "desc": "錯誤時間戳",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "MM",
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Invalid request"
+    },
+    {
+        "desc": "只取1筆K線 count=1",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1m",
+        "count": 1,
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "取100筆K線(官方文件沒有說明最大可以抓多少，固以100為上限) count=100",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1m",
+        "count": 100,
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "取0筆K線 count=0",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1m",
+        "count": 0,
+        "expected_code": 40004,
+        "expect_data": false,
+        "expected_message": "Count must be positive"
+    },
+    {
+        "desc": "count為負數",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1m",
+        "count": -1,
+        "expected_code": 40004,
+        "expect_data": false,
+        "expected_message": "Count must be positive"
+    },
+    {
+        "desc": "結束時間戳小於開始時間戳（data 為空，這裡設true因為回傳是給200）",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "7D",
+        "start_ts": 1751054694,
+        "end_ts": 1751024338,
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
         "desc": "1分鐘K線",
         "instrument_name": "BTCUSD-PERP",
         "timeframe": "1m",
@@ -144,6 +211,6 @@
         "instrument_name": "BTCUSD-PERP",
         "timeframe": "1M",
         "expected_code": 0,
-        "expect_data": true
-    }
+        "expect_data": true    }
+
 ]

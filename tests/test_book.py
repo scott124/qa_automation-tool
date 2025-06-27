@@ -37,10 +37,19 @@ def test_book_snapshot(case, env):
             data = result["data"]
             assert isinstance(data, list), "data 欄位不是 list"
             assert len(data) > 0, "data 陣列為空"
+
+            # ====== instrument動態驗證，多筆交易對情況下 ======
+            if "extra_params" in case and "channels" in case["extra_params"]:
+                expect_instruments = [ch.split(".")[1] for ch in case["extra_params"]["channels"]]
+                assert result["instrument_name"] in expect_instruments, \
+                    f"交易對不符: {result['instrument_name']} 不在預期: {expect_instruments}"
+            else:
+                assert result["instrument_name"] == case["instrument_name"], \
+                    f"交易對不符: {result['instrument_name']} != {case['instrument_name']}"
+
             with allure.step("驗證 channel、instrument_name、depth 都等於預期"):
                 assert result["channel"].startswith("book"), f"channel 欄位錯誤: {result['channel']}"
                 assert int(result["depth"]) == int(case["depth"]), f"深度不符: {result['depth']} != {case['depth']}"
-                assert result["instrument_name"] == case["instrument_name"], f"商品不符: {result['instrument_name']} != {case['instrument_name']}"
 
             for i, entry in enumerate(data):
                 with allure.step(f"驗證第 {i} 筆 bids/asks 結構與數值"):

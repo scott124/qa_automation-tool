@@ -36,7 +36,7 @@
         "expected_message": "Unknown symbol"
     },
     {
-        "desc": "商品名稱為空",
+        "desc": "交易對名稱為空",
         "instrument_name": "",
         "depth": 10,
         "expected_code": 40003,
