@@ -3,7 +3,7 @@ import json
 import allure
 from api.candlestick_api import CandlestickAPI
 from jsonschema import validate
-from utils.schemas import candlestick_schema
+from schema.candlestick_schema import candlestick_schema
 from utils.timeframe import TIMEFRAME_TO_INTERVAL
 
 
@@ -11,7 +11,7 @@ with open("data/candlestick_testdata.json", encoding="utf-8") as f:
     cases = json.load(f)
 
 @allure.feature("Public API - Candlestick(測試用API)")
-@pytest.mark.smoke
+@pytest.mark.api
 @pytest.mark.parametrize("case", cases, ids=[c["desc"] for c in cases])
 def test_get_candlestick(case, env):
     api = CandlestickAPI(env=env)

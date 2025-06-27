@@ -1,0 +1,9 @@
+[
+    {
+        "desc": "訂閱BTCUSD-PERP 10檔",
+        "instrument_name": "BTCUSD-PERP",
+        "depth": 10,
+        "expected_code": 0,
+        "expect_data": true
+    }
+]
