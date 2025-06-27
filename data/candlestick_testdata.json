@@ -1,6 +1,6 @@
 [
     {
-        "desc": "UAT ENV: BTCUSD-PERP",
+        "desc": "UAT_ENV: BTCUSD-PERP 5M candlestick data",
         "instrument_name": "BTCUSD-PERP",
         "timeframe": "M5",
         "expected_code": 0,
