@@ -1,11 +1,149 @@
 [
     {
-        "desc": "UAT_ENV: BTCUSD-PERP 5M candlestick data",
+        "desc": "1分鐘K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1m",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "1分鐘K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "M1",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "5分鐘K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "5m",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "5分鐘K線 (legacy)",
         "instrument_name": "BTCUSD-PERP",
         "timeframe": "M5",
         "expected_code": 0,
-        "expect_data": true,
-        "expected_open": "106816.0",
-        "expected_volume": "0"
+        "expect_data": true
+    },
+    {
+        "desc": "15分鐘K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "15m",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "15分鐘K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "M15",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "30分鐘K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "30m",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "30分鐘K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "M30",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "1小時K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1h",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "1小時K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "H1",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "2小時K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "2h",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "2小時K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "H2",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "4小時K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "4h",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "4小時K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "H4",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "12小時K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "12h",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "12小時K線 (legacy)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "H12",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "日K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1d",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "日K線 (legacy D1)",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "D1",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "7日K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "7D",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "14日K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "14D",
+        "expected_code": 0,
+        "expect_data": true
+    },
+    {
+        "desc": "月K線",
+        "instrument_name": "BTCUSD-PERP",
+        "timeframe": "1M",
+        "expected_code": 0,
+        "expect_data": true
     }
 ]
