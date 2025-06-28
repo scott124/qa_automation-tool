@@ -4,27 +4,30 @@
 
 ```
 crypto.com_qa/
+├── allure-results         # allure報告
 ├── api/                   # API、WebSocket 封裝
 │   ├── base_api.py
 │   ├── candlestick_api.py
 │   ├── base_ws.py
 │   └── book_api.py
+├── config/                   
+│   └── config.toml        # 多環境/連線設定
 ├── data/                  # 測試資料
 │   ├── candlestick_testdata.json
 │   └── book_testdata.json
 ├── schema/                # jsonschema 驗證
 │   ├── candlestick_schema.py
 │   └── book_schema.py
-├── utils/                 # 工具
-│   └── timeframe.py
 ├── tests/                 # 測試案例
 │   ├── test_candlestick.py
 │   └── test_book.py
-├── config.toml            # 多環境/連線設定
-├── requirements.txt       # Python 依賴包清單
-├── .gitignore
+├── utils/                 
+│   └── timeframe.py
+├── .gitignore      
+├── conftest.py            
 ├── pytest.ini             # pytest mark 設定
-└── README.md
+├── README.md
+└── requirements.txt       # Python 依賴包清單
 ```
 
 ## 環境安裝
