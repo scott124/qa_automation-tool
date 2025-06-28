@@ -38,7 +38,7 @@ def test_book_snapshot(case, env):
             assert isinstance(data, list), "data 欄位不是 list"
             assert len(data) > 0, "data 陣列為空"
 
-            # ====== instrument動態驗證，多筆交易對情況下 ======
+            # ====== instrument動態驗證，單一、多交易對情況下皆適用 ======
             if "extra_params" in case and "channels" in case["extra_params"]:
                 expect_instruments = [ch.split(".")[1] for ch in case["extra_params"]["channels"]]
                 assert result["instrument_name"] in expect_instruments, \

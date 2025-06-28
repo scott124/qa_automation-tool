@@ -3,3 +3,4 @@ requests
 allure-pytest
 toml
 jsonschema
+websocket-client

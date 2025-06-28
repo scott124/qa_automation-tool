@@ -1,13 +1,86 @@
-# ctypto.com_interview
+# crypto.com QA 測試專案
 
-## 常用指令
+## 架構圖
 
-- **`-m`**: 只執行被標記的測試案例。
-- **`-s`**: 顯示所有 `print` 語句和其他輸出。
-- **`-v`**: 顯示更詳細的信息，包括完整的測試名稱。
-- **`--tb=short`**: 測試失敗時，只顯示追蹤訊息的最後一部分，以便更容易定位問題。
-- **`--lf`**: 執行完一次後，添加此指令可以只執行失敗的測試案例。
-- **`--env`**: 自定義選項，用於指定運行環境，預設環境於pytest.ini檔設定。
-- **`--params`**: 自定義選項，可選擇執行單一或複數幣種。未使用此指令時，預設運行所有幣種。
-- **`--alluredir`**: 設定 Allure 報告的輸出路徑。預設路徑為 `C:` 槽根目錄。
-- **`--count`**: 指定運行測項的次數，需安裝count套件。
+```
+crypto.com_qa/
+├── api/                   # API、WebSocket 封裝
+│   ├── base_api.py
+│   ├── candlestick_api.py
+│   ├── base_ws.py
+│   └── book_api.py
+├── data/                  # 測試資料
+│   ├── candlestick_testdata.json
+│   └── book_testdata.json
+├── schema/                # jsonschema 驗證
+│   ├── candlestick_schema.py
+│   └── book_schema.py
+├── utils/                 # 工具
+│   └── timeframe.py
+├── tests/                 # 測試案例
+│   ├── test_candlestick.py
+│   └── test_book.py
+├── config.toml            # 多環境/連線設定
+├── requirements.txt       # Python 依賴包清單
+├── .gitignore
+├── pytest.ini             # pytest mark 設定
+└── README.md
+```
+
+## 環境安裝
+
+在專案目錄下執行：
+
+```bash
+pip install -r requirements.txt
+```
+
+### 安裝 Allure 報告工具
+
+需另外安裝 Allure，建議使用 scoop 安裝：
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+scoop install allure
+```
+
+## 常用指令說明
+
+* `-m`：只執行被標記的測試案例。
+* `-s`：顯示所有 `print` 語句及其他輸出。
+* `-v`：顯示更詳細訊息，包括完整測試名稱。
+* `--tb=short`：失敗時僅顯示精簡追蹤訊息。
+* `--lf`：僅執行上次失敗的測試案例。
+* `--env`：指定測試運行環境，未填寫預設環境為UAV。
+* `--alluredir`：指定 Allure 報告輸出目錄。
+
+## 測試執行
+
+切換到專案根目錄 `crypto.com_qa` 下執行以下指令。
+
+### 執行所有測試（含 API 與 WebSocket）：
+
+```bash
+pytest
+```
+
+### 執行測試並產生 Allure 報告：
+
+```bash
+pytest --alluredir=allure-results
+```
+
+### 開啟 Allure 報告
+
+```bash
+allure serve allure-results
+```
+
+### 指定環境與測試類型（API/WebSocket）
+
+例如執行 prod 環境下的 API 測試並產生報告：
+
+```bash
+pytest --env prod -m api --alluredir=allure-results
+```

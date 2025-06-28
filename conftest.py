@@ -15,7 +15,7 @@ def env(request):
 @pytest.hookimpl(tryfirst=True)
 def pytest_sessionstart(session):
     """在 pytest 執行前，自動清空 allure 報告資料夾內容"""
-    report_dir = "allure-report"
+    report_dir = "allure-results"
     if os.path.exists(report_dir):
         # 只清空內容
         for f in os.listdir(report_dir):
