@@ -1,4 +1,4 @@
-# crypto.com QA 測試專案
+# crypto.com_QA 專案
 
 ## 架構圖
 
@@ -55,7 +55,7 @@ scoop install allure
 * `-v`：顯示更詳細訊息，包括完整測試名稱。
 * `--tb=short`：失敗時僅顯示精簡追蹤訊息。
 * `--lf`：僅執行上次失敗的測試案例。
-* `--env`：指定測試運行環境，未填寫預設環境為UAV。
+* `--env`：指定測試運行環境，未填寫預設環境為UAT。
 * `--alluredir`：指定 Allure 報告輸出目錄。
 
 ## 測試執行
