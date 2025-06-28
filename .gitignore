@@ -2,5 +2,5 @@ __pycache__/
 *.pyc
 .env
 config/config.toml
-allure-report/
+allure-results/
 .pytest_cache/
