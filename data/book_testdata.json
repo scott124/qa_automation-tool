@@ -45,6 +45,14 @@
     
     },
     {
+        "desc": "交易對為小寫",
+        "instrument_name": "btcusd-perp",
+        "depth": 10,
+        "expected_code": 40003,
+        "expect_data": false,
+        "expected_message": "Unknown symbol"
+    },
+    {
         "desc": "channels 為空",
         "instrument_name": "BTCUSD-PERP",
         "depth": 10,

@@ -16,6 +16,14 @@
         "expected_message": "Invalid instrument_name"
     },
     {
+        "desc": "交易對為小寫",
+        "instrument_name": "btcusd-perp",
+        "timeframe": "",
+        "expected_code": 40004,
+        "expect_data": false,
+        "expected_message": "Invalid instrument_name"
+    },
+    {
         "desc": "錯誤時間戳",
         "instrument_name": "BTCUSD-PERP",
         "timeframe": "MM",
@@ -211,6 +219,7 @@
         "instrument_name": "BTCUSD-PERP",
         "timeframe": "1M",
         "expected_code": 0,
-        "expect_data": true    }
+        "expect_data": true    
+    }
 
 ]
