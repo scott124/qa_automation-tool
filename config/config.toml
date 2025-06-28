@@ -1,0 +1,13 @@
+[uat]
+base_url = "https://uat-api.3ona.co/exchange/v1"
+timeout = 10
+
+[prod]
+base_url = "https://api.crypto.com/exchange/v1"
+timeout = 10
+
+[ws_uat]
+ws_url = "wss://uat-stream.3ona.co/exchange/v1/market"
+
+[ws_prod]
+ws_url = "wss://stream.crypto.com/exchange/v1/market"
