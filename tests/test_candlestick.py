@@ -9,6 +9,8 @@ from utils.timeframe import TIMEFRAME_TO_INTERVAL
 with open("data/candlestick_testdata.json", encoding="utf-8") as f:
     cases = json.load(f)
 
+# cases = [c for c in cases if c["desc"] == "count為負數"] #測單一一筆可以這樣寫
+
 @allure.feature("API - Candlestick")
 @pytest.mark.api
 @pytest.mark.parametrize("case", cases, ids=[c["desc"] for c in cases])
@@ -74,17 +76,17 @@ def test_get_candlestick(case, env):
                 except Exception as e:
                     assert False, f"[{i}] 數值轉換/邏輯異常: {e}"
             # 驗證時間戳間隔
-            if len(data) > 1:
+            if len(data) > 1: # K線數量>1的時候檢查
                 tf = case.get("timeframe", "M5")
                 interval = TIMEFRAME_TO_INTERVAL.get(tf)
                 if interval:  # 非月K線
                     for j in range(1, len(data)):
                         diff = data[j]["t"] - data[j-1]["t"]
                         assert diff == interval, f"K線時間間隔不正確，第{j-1}~{j}根:{diff}，預期:{interval}"
-                elif tf == "1M":
+                elif tf == "1M": # 月K另外處理因為日期不固定，所以只驗證時間遞增
                     for j in range(1, len(data)):
                         assert data[j]["t"] > data[j-1]["t"], f"月K線時間戳未遞增: {data[j-1]['t']} → {data[j]['t']}"
     else:
         with allure.step("異常或無數據情境"):
-            data = resp_json.get("result", {}).get("data", [])
+            data = resp_json.get("result", {}).get("data", []) # 避免這兩個不存在報錯
             assert resp_json["code"] != 0 or not data, f"異常場景 data: {data}"

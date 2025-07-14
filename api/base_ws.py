@@ -15,7 +15,7 @@ class BaseWSClient:
         self.ws = None
         self.timeout = timeout
         self.responses = []
-        self._lock = threading.Lock()
+        self._lock = threading.Lock() #確保多執行緒下資料一致
 
     def on_message(self, ws, message):
         with self._lock:
