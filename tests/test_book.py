@@ -40,7 +40,7 @@ def test_book_snapshot(case, env):
 
             # ====== instrument動態驗證，單一、多交易對情況下皆適用 ======
             if "extra_params" in case and "channels" in case["extra_params"]:
-                expect_instruments = [ch.split(".")[1] for ch in case["extra_params"]["channels"]]
+                expect_instruments = [ch.split(".")[1] for ch in case["extra_params"]["channels"]] #[1]為交易對名稱
                 assert result["instrument_name"] in expect_instruments, \
                     f"交易對不符: {result['instrument_name']} 不在預期: {expect_instruments}"
             else:

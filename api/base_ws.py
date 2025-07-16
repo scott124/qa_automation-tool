@@ -18,7 +18,7 @@ class BaseWSClient:
         self._lock = threading.Lock() #確保多執行緒下資料一致
 
     def on_message(self, ws, message):
-        with self._lock:
+        with self._lock: 
             self.responses.append(message)
 
     def on_error(self, ws, error):
@@ -34,21 +34,21 @@ class BaseWSClient:
             on_error=self.on_error,
             on_close=self.on_close
         )
-        self.thread = threading.Thread(target=self.ws.run_forever, daemon=True)
+        self.thread = threading.Thread(target=self.ws.run_forever, daemon=True) # run_forever()表在獨立thread跑
         self.thread.start()
         time.sleep(1)
 
     def send(self, payload):
-        self.ws.send(json.dumps(payload))
+        self.ws.send(json.dumps(payload)) #payload轉json傳到server
 
     def get_responses(self, min_count=1, timeout=None):
         timeout = timeout or self.timeout
         start = time.time()
-        while len(self.responses) < min_count and time.time() - start < timeout:
+        while len(self.responses) < min_count and time.time() - start < timeout: #檢查response長度夠不夠
             time.sleep(0.1)
         with self._lock:
-            resps = self.responses[:]
-            self.responses = []
+            resps = self.responses[:] # 取出所有收到的訊息
+            self.responses = [] # 清空 responses，之後可以收新的
         return resps
 
     def get_response(self, timeout=None):
